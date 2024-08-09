@@ -4,15 +4,18 @@ using UnityEngine;
 
 public class BridgeCreator : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] int bridgeSize;
+    [SerializeField] GameObject bridgeObjectPrefab;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    BridgeObject lastCreatedBridge;
+	public void CreateBridge()
+	{
+		if (lastCreatedBridge != null)
+		{
+			DestroyImmediate(lastCreatedBridge.gameObject);
+		}
+		GameObject bridgeObject = Instantiate(bridgeObjectPrefab, transform);
+		lastCreatedBridge = bridgeObject.GetComponent<BridgeObject>();
+		lastCreatedBridge.SetupBridge(new Bridge(bridgeSize));
+	}
 }

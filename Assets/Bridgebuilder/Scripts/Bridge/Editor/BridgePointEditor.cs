@@ -12,5 +12,6 @@ public class BridgePointEditor : Editor
 		GameObject bridgePointPrefab = AssetDatabase.LoadAssetAtPath<GameObject>(bridgePointPrefabPath);
 		GameObject createdPoint =(GameObject) PrefabUtility.InstantiatePrefab(bridgePointPrefab);
         createdPoint.name = "Bridge Side Point";
+
 	}
 }

@@ -3,7 +3,9 @@ guid: 36fe608187bafc347acc25b8d2bcf0e7
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - lastCreatedBridge: {instanceID: 0}
+  - bridgeObjectPrefab: {fileID: 6151839299897714514, guid: e8d0999900bc42841b544c606b6f9453, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
