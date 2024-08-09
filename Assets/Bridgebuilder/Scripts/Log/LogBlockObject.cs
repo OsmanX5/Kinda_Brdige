@@ -8,6 +8,7 @@ public class LogBlockObject : MonoBehaviour
     [SerializeField] GameObject logVisual;
     [SerializeField] Transform logVisualsParent;
     [SerializeField] BoxCollider2D logBlockCollider;
+    public LogBlockState State;
     public void SetupLogBlock(LogBlock logBlock)
     {
         if (logBlock.GetNumberofLogs < 0)
@@ -30,11 +31,9 @@ public class LogBlockObject : MonoBehaviour
     }
     public void DestroyLogBlock()
     {
-        int n = logVisualsParent.childCount;
-        for(int i=0;i < n; i++)
-        {
-            DestroyImmediate(logVisualsParent.GetChild(0).gameObject);
-        }
-
+        logVisualsParent.DestroyAllChildrens();
 	}
+    
+    public int LogsCount => logBlock.GetNumberofLogs;
+
 }
