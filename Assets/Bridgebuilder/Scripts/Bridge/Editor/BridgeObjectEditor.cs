@@ -9,10 +9,21 @@ public class BridgeObjectEditor : Editor
 	public override void OnInspectorGUI()
 	{
 		base.OnInspectorGUI();
+		GUILayout.Label("=========Unit Test======");
 		if (GUILayout.Button("Setup Bridge with width5 "))
 		{
 			BridgeObject bridgeObject = (BridgeObject)target;
 			bridgeObject.SetupBridge(new Bridge(5));
+		}
+		if (GUILayout.Button("Setup Bridge with width 8 "))
+		{
+			BridgeObject bridgeObject = (BridgeObject)target;
+			bridgeObject.SetupBridge(new Bridge(8));
+		}
+		if (GUILayout.Button("Clear Bridge"))
+		{
+			BridgeObject bridgeObject = (BridgeObject)target;
+			bridgeObject.ClearBridge();
 		}
 	}
 }

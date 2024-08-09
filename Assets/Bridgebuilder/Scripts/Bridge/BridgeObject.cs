@@ -6,26 +6,30 @@ using UnityEngine;
 public class BridgeObject : MonoBehaviour
 {
 	[SerializeField] GameObject bridgeCellObjectPrefab;
+	[SerializeField]BridgeSidePoint startPoint;
+	[SerializeField]BridgeSidePoint endPoint;
     Bridge bridge;
-	BridgeSidePoint startPoint;
-	BridgeSidePoint endPoint;
-
-	public void SetupBridge(Bridge bridge,BridgeSidePoint startPoint,BridgeSidePoint endPoint)
+	List<GameObject> bridgeCellObjects = new List<GameObject>();
+	public void SetupBridge(Bridge bridge)
 	{
 		this.bridge = bridge;
-		this.startPoint = startPoint;
-		this.endPoint = endPoint;
+		BuildTheBridge();
 	}
-	public void UpdateBridgeObject()
+	public void BuildTheBridge()
 	{
-		float widthOffset = bridgeCellObjectPrefab.GetComponent<BridgeCellObject>().Width;
-		Vector3 currentPosition = startPoint.Position;
-		foreach (var cell in bridge.Cells)
+		ClearBridge();
+		bridgeCellObjects = bridge.BuildBridgeCells(bridgeCellObjectPrefab, startPoint.transform.position);
+		foreach (var cellObject in bridgeCellObjects)
 		{
-			// Update cell object
-			GameObject cellObject = Instantiate(bridgeCellObjectPrefab, currentPosition, Quaternion.identity);
-			cellObject.GetComponent<BridgeCellObject>().SetupBridgeCell(cell);
-			currentPosition.x += widthOffset;
+			cellObject.transform.SetParent(transform);
 		}
+	}
+	public void ClearBridge()
+	{
+		foreach (var cellObject in bridgeCellObjects)
+		{
+			DestroyImmediate(cellObject);
+		}
+		bridgeCellObjects.Clear();
 	}
 }

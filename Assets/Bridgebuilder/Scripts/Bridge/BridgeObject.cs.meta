@@ -3,7 +3,10 @@ guid: 41c85b16415ef7d4b9b23c5caacfcc99
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - bridgeCellObjectPrefab: {fileID: 1194796823622756908, guid: c30e3c0e97b24854f8859314d46e20b7, type: 3}
+  - startPoint: {instanceID: 0}
+  - endPoint: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

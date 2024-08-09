@@ -1,0 +1,12 @@
+fileFormatVersion: 2
+guid: 8d4fa04f6d30afc40867a17262a08354
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - bridgePointPrefab: {fileID: 359192046420835464, guid: aa485f8ed487526418f6fa47068bb5d3, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

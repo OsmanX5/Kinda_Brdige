@@ -15,4 +15,20 @@ public class Bridge
 			cells.Add(new BridgeCell());
 		}
 	}
+	public List<GameObject> BuildBridgeCells(GameObject bridgeCellObjectPrefab,Vector3 startPosition)
+	{
+		List<GameObject> cellObjects = new List<GameObject>();
+		float widthOffset = bridgeCellObjectPrefab.GetComponent<BridgeCellObject>().Width;
+		Vector3 currentPosition = startPosition;
+		foreach (var cell in cells)
+		{
+			// Update cell object
+			GameObject cellObject = GameObject.Instantiate(bridgeCellObjectPrefab, currentPosition, Quaternion.identity);
+			cellObject.name = "Bridge Cell";
+			cellObject.GetComponent<BridgeCellObject>().SetupBridgeCell(cell);
+			currentPosition.x += widthOffset;
+			cellObjects.Add(cellObject);
+		}
+		return cellObjects;
+	}
 }
