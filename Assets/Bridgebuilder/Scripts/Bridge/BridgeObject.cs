@@ -6,19 +6,18 @@ using UnityEngine;
 public class BridgeObject : MonoBehaviour
 {
 	[SerializeField] GameObject bridgeCellObjectPrefab;
-	[SerializeField]BridgeSidePoint startPoint;
-	[SerializeField]BridgeSidePoint endPoint;
+	
     Bridge bridge;
 	List<GameObject> bridgeCellObjects = new List<GameObject>();
-	public void SetupBridge(Bridge bridge)
+	public void SetupBridge(Bridge bridge,Vector3 startPosition)
 	{
 		this.bridge = bridge;
-		BuildTheBridge();
+		BuildTheBridge(startPosition);
 	}
-	public void BuildTheBridge()
+	public void BuildTheBridge(Vector3 startPosition)
 	{
 		ClearBridge();
-		bridgeCellObjects = bridge.BuildBridgeCells(bridgeCellObjectPrefab, startPoint.transform.position);
+		bridgeCellObjects = bridge.BuildBridgeCells(bridgeCellObjectPrefab, startPosition);
 		foreach (var cellObject in bridgeCellObjects)
 		{
 			cellObject.transform.SetParent(transform);

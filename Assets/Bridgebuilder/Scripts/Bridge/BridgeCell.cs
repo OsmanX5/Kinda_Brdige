@@ -9,9 +9,11 @@ public class BridgeCell
 	BridgeCellState cellState;
 	public BridgeCellState CellState => cellState;
 	int index;
-	public int Index => index;
-	public void SetBrdigeIndex(int index)
+
+	public BridgeCell(int index)
 	{
 		this.index = index;
 	}
+
+	public int Index => index;
 }

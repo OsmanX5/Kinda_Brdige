@@ -13,12 +13,12 @@ public class BridgeObjectEditor : Editor
 		if (GUILayout.Button("Setup Bridge with width 5"))
 		{
 			BridgeObject bridgeObject = (BridgeObject)target;
-			bridgeObject.SetupBridge(new Bridge(5));
+			bridgeObject.SetupBridge(new Bridge(5),Vector3.zero);
 		}
 		if (GUILayout.Button("Setup Bridge with width 8"))
 		{
 			BridgeObject bridgeObject = (BridgeObject)target;
-			bridgeObject.SetupBridge(new Bridge(8));
+			bridgeObject.SetupBridge(new Bridge(8),Vector3.zero);
 		}
 		if (GUILayout.Button("Clear Bridge"))
 		{

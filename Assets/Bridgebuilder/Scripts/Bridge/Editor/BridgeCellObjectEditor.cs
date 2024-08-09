@@ -12,8 +12,7 @@ public class BridgeCellObjectEditor : Editor
 		if(GUILayout.Button("Setup Bridge Cell to Index 0"))
 		{
 			BridgeCellObject bridgeCellObject = (BridgeCellObject)target;
-			BridgeCell bridgeCell = new BridgeCell();
-			bridgeCell.SetBrdigeIndex(0);
+			BridgeCell bridgeCell = new BridgeCell(0);
 			bridgeCellObject.SetupBridgeCell(bridgeCell);
 		}
 		if(GUILayout.Button("Update Cell Object"))

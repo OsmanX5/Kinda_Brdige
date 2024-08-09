@@ -9,11 +9,16 @@ public class BridgeCreatorEditor : Editor
 	public override void OnInspectorGUI()
 	{
 		base.OnInspectorGUI();
+		BridgeCreator bridgeCreator = (BridgeCreator)target;
 		CustomEditorElements.UnitTestBox();
 		if (GUILayout.Button("CreateBridge"))
 		{
-			BridgeCreator bridgeCreator = (BridgeCreator)target;
 			bridgeCreator.CreateBridge();
 		}
+		if (GUILayout.Button("Delet Bridge"))
+		{
+			bridgeCreator.DestroyBridge();
+		}
+
 	}
 }

@@ -12,7 +12,8 @@ public class Bridge
 		cells = new List<BridgeCell>();
 		for (int i = 0; i < size; i++)
 		{
-			cells.Add(new BridgeCell());
+			cells.Add(new BridgeCell(i));
+
 		}
 	}
 	public List<GameObject> BuildBridgeCells(GameObject bridgeCellObjectPrefab,Vector3 startPosition)
@@ -25,6 +26,7 @@ public class Bridge
 			// Update cell object
 			GameObject cellObject = GameObject.Instantiate(bridgeCellObjectPrefab, currentPosition, Quaternion.identity);
 			cellObject.name = "Bridge Cell";
+
 			cellObject.GetComponent<BridgeCellObject>().SetupBridgeCell(cell);
 			currentPosition.x += widthOffset;
 			cellObjects.Add(cellObject);
