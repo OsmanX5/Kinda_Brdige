@@ -1,0 +1,9 @@
+BridgeRiver.png
+size:1024,1024
+filter:Linear,Linear
+pma:true
+scale:0.7
+BridgeWater
+bounds:2,691,952,263
+BridgeWaterWaves
+bounds:2,384,816,305
