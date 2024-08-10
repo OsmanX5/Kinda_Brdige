@@ -25,7 +25,7 @@ public class LogBlockDrag : MonoBehaviour
 
 	private void OnMouseDown()
 	{
-		// Record the difference between the objects centre, and the clicked point on the camera plane.
+		logBlock.State = LogBlockState.Draging;
 		offset = transform.position - Camera.main.ScreenToWorldPoint(Input.mousePosition);
 		dragging = true;
 	}

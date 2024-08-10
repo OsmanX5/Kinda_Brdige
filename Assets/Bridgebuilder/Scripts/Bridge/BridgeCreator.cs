@@ -10,6 +10,11 @@ public class BridgeCreator : MonoBehaviour
 	[SerializeField] BridgeSidePoint startPoint;
 	[SerializeField] BridgeSidePoint endPoint;
 	BridgeObject lastCreatedBridge;
+	private void Start()
+	{
+		CreateBridge();
+
+	}
 	public void CreateBridge()
 	{
 		DestroyBridge();

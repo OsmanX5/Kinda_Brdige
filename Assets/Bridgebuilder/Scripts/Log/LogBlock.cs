@@ -10,7 +10,7 @@ public class LogBlock
     int numberOfLogs;
 	public LogBlock(int numberOfLogs)
 	{
-		this.logState = LogBlockState.OnHoldingArea;
+		this.logState = LogBlockState.InShevel;
 		this.numberOfLogs = numberOfLogs;
 	}
 	public LogBlockState GetCurrentLogState => logState;

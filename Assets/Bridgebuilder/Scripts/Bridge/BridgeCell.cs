@@ -6,8 +6,7 @@ using UnityEngine;
 [Serializable]
 public class BridgeCell
 {
-	BridgeCellState cellState;
-	public BridgeCellState CellState => cellState;
+	public BridgeCellState CellState{ get; set; }
 	int index;
 
 	public BridgeCell(int index)

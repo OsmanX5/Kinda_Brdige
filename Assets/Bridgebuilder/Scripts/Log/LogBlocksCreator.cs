@@ -12,8 +12,12 @@ public class LogBlocksCreator : MonoBehaviour
     const int MAXS_SHELF_COUNT = 12
         ;
 	List<LogBlockObject> createdLogBlocks = new List<LogBlockObject>();
+	private void Start()
+	{
+		CreateLogBlocks();
 
-    public void CreateLogBlocks()
+	}
+	public void CreateLogBlocks()
     {
         DestroyOldBlocks();
 		int createdBlocksSize = 0;

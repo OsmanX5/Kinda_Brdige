@@ -4,7 +4,8 @@ using UnityEngine;
 
 public enum BridgeCellState 
 {
-    empty,
-	used,
-	winning,
+    Hide,
+    Hologram,
+    Hovering,
+    Used
 }
