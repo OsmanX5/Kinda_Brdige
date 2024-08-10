@@ -17,6 +17,7 @@ public class BridgeObject : MonoBehaviour
 	
 	//for debugging
 	BridgeCellState[] cellStates;
+	public event Action OnCompleted;
 	private void Update()
 	{
 		cellStates = bridgeCells.Select(cell => cell.CellState).ToArray();
@@ -102,6 +103,8 @@ public class BridgeObject : MonoBehaviour
 			mechanism.SnapToPosition(worldPosition);
 			SnapedLogBlocks.Add(mechanism);
 			mechanism.OnPicked += OnLogBLockPicked;
+			if (UnUsedCells.Count == 0)
+				OnCompleted?.Invoke();
 		}
 		else
 		{
@@ -112,6 +115,7 @@ public class BridgeObject : MonoBehaviour
 	private void OnLogBLockPicked(LogBlockMechanism mechanism)
 	{
 		UpdateCellsState(bridgeCellObjectsForBlock(mechanism.logBlock),BridgeCellState.Hologram);
+		mechanism.OnPicked -= OnLogBLockPicked;
 	}
 
 	bool CanPlaceLogBlock(LogBlockObject logBlock)

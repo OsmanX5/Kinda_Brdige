@@ -9,26 +9,17 @@ public class LogBlocksCreator : MonoBehaviour
     [SerializeField] Transform logblocksParent;
     [SerializeField] Transform ShelfStartPoint;
     [SerializeField,Range(1,4)] int logBlocksCount = 2;
-    const int MAXS_SHELF_COUNT = 12
-        ;
+    const int MAXS_SHELF_COUNT =16;
+        
 	List<LogBlockObject> createdLogBlocks = new List<LogBlockObject>();
-	private void Start()
-	{
-		CreateLogBlocks();
-
-	}
-	public void CreateLogBlocks()
+	public void CreateLogBlocks(int GrandTarget = 8)
     {
         DestroyOldBlocks();
-		int createdBlocksSize = 0;
-		for (int i = 0; i < logBlocksCount; i++)
-        {
-			int available = MAXS_SHELF_COUNT - createdBlocksSize;
-			int randomSize = Random.Range(1,Mathf.Min(available,6));
-			CreateALogBlock(randomSize);
-			createdBlocksSize += randomSize;
+        List<int> sizes = CreateRandomizedLengthFitTarget(GrandTarget);
+        foreach (int length in sizes) {
+            CreateALogBlock(length);
 		}
-        RandomizeAndOrgnize();
+		RandomizeAndOrgnize();
 	}
     public void RandomizeAndOrgnize()
     {
@@ -66,5 +57,46 @@ public class LogBlocksCreator : MonoBehaviour
         logblocksParent.DestroyAllChildrens();
         createdLogBlocks = new List<LogBlockObject>();
 
+	}
+
+    List<int> CreateRandomizedLengthFitTarget(int target)
+    {
+        List<int> res = CreateRandomizedLength();
+		while (!IsSubsetSumPossible(res.ToArray(), target))
+		{
+			res = CreateRandomizedLength();
+		}
+        return res;
+
+	}
+    List<int> CreateRandomizedLength()
+    {
+        List<int> res = new List<int>();
+		int createdBlocksSize = 0;
+		for (int i = 0; i < logBlocksCount; i++)
+		{
+			int available = MAXS_SHELF_COUNT - createdBlocksSize;
+			int randomSize = Random.Range(1, Mathf.Min(available, 6));
+			createdBlocksSize += randomSize;
+            res.Add(randomSize);
+		}
+        return res;
+    }
+    public bool IsSubsetSumPossible(int[] arr, int target)
+	{
+		bool[] dp = new bool[target + 1];
+		dp[0] = true;
+		foreach (int num in arr)
+		{
+			for (int j = target; j >= num; j--)
+			{
+				if (dp[j - num])
+				{
+					dp[j] = true;
+				}
+			}
+		}
+
+		return dp[target];
 	}
 }

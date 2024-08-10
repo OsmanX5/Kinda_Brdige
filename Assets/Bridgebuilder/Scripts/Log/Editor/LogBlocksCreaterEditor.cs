@@ -21,5 +21,11 @@ public class LogBlocksCreaterEditor : Editor
 		{
 			logBlocksCreator.RandomizeAndOrgnize();
 		}
+		if(GUILayout.Button("IsSubsetSumPossible"))
+		{
+			int[] arr = new int[4] {3,5,7,1}; 
+			bool result = logBlocksCreator.IsSubsetSumPossible(arr,2);
+			Debug.Log(result);
+		}
 	}
 }

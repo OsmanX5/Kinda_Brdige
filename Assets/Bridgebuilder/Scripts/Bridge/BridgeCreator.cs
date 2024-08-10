@@ -1,33 +1,38 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class BridgeCreator : MonoBehaviour
 {
-	[Range(8,12)]
+	[Range(8,14)]
     [SerializeField] int bridgeSize;
     [SerializeField] GameObject bridgeObjectPrefab;
 	[SerializeField] BridgeSidePoint startPoint;
 	[SerializeField] BridgeSidePoint endPoint;
-	BridgeObject lastCreatedBridge;
-	private void Start()
-	{
-		CreateBridge();
+	public int BridgeSize => bridgeSize;
+	BridgeObject ActiveBridge;
+	public event Action<BridgeObject> OnCreateABridge;
 
+	public void CreateBridge(int size)
+	{
+		bridgeSize = size;
+		CreateBridge();
 	}
 	public void CreateBridge()
 	{
 		DestroyBridge();
 		UpdateBridgeSidePointsPositions();
 		GameObject bridgeObject = Instantiate(bridgeObjectPrefab, transform);
-		lastCreatedBridge = bridgeObject.GetComponent<BridgeObject>();
-		lastCreatedBridge.SetupBridge(new Bridge(bridgeSize),startPoint.transform.position);
+		ActiveBridge = bridgeObject.GetComponent<BridgeObject>();
+		ActiveBridge.SetupBridge(new Bridge(bridgeSize),startPoint.transform.position);
+		OnCreateABridge?.Invoke(ActiveBridge);
 	}
 	public void DestroyBridge()
 	{
-		if(lastCreatedBridge!=null)
-			DestroyImmediate(lastCreatedBridge.gameObject);
-		lastCreatedBridge = null;
+		if(ActiveBridge!=null)
+			DestroyImmediate(ActiveBridge.gameObject);
+		ActiveBridge = null;
 	}
 	void UpdateBridgeSidePointsPositions()
 	{

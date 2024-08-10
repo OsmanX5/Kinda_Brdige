@@ -18,7 +18,7 @@ public class BridgeCellObject : MonoBehaviour
 	}
 	public void UpdateCellObject()
 	{
-		cellNumber.text = bridgeCell.Index.ToString();
+		cellNumber.text = (bridgeCell.Index+1).ToString();
 	}
 	public void UpdateCellState(BridgeCellState newState)
 	{
